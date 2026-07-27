@@ -4,14 +4,36 @@ require_once "Student.php";
 
 $studentModel = new Student();
 
+
+// Pedir ID si no existe
 if (!isset($_GET['id'])) {
-    echo "ID del estudiante no encontrado";
-    exit;
+
+?>
+
+<h2>Actualizar estudiante</h2>
+
+<form method="GET">
+
+    <label>ID del estudiante:</label>
+    <input type="number" name="id">
+
+    <button type="submit">
+        Buscar
+    </button>
+
+</form>
+
+<?php
+
+exit;
+
 }
+
 
 $id = $_GET['id'];
 
 $student = $studentModel->getById($id);
+
 
 if (!$student) {
     echo "Estudiante no encontrado";
@@ -19,7 +41,7 @@ if (!$student) {
 }
 
 
-// Actualizar datos
+// Actualizar
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $name = $_POST['name'];
@@ -28,38 +50,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $studentModel->update($id, $name, $email);
 
     echo "Estudiante actualizado correctamente";
-
     echo "<br><a href='read-students.php'>Volver al listado</a>";
-
     exit;
 }
 
 ?>
 
+
 <h2>Actualizar estudiante</h2>
 
 <form method="POST">
 
-    <label>Nombre:</label>
-    <input 
-        type="text" 
-        name="name" 
-        value="<?php echo $student['name']; ?>"
-    >
+Nombre:
+<input 
+type="text" 
+name="name" 
+value="<?php echo $student['name']; ?>"
+>
 
-    <br><br>
+<br><br>
 
-    <label>Email:</label>
-    <input 
-        type="email" 
-        name="email" 
-        value="<?php echo $student['email']; ?>"
-    >
+Email:
+<input 
+type="email" 
+name="email" 
+value="<?php echo $student['email']; ?>"
+>
 
-    <br><br>
+<br><br>
 
-    <button type="submit">
-        Actualizar
-    </button>
+<button>
+Actualizar
+</button>
 
 </form>
