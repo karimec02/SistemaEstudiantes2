@@ -1,6 +1,12 @@
-﻿namespace SistemaEstudiantes2.data
-{
-    public class students
+[
     {
+        "id": 1,
+        "name": "Karime Cedano",
+        "email": "karimecedano02@gmail.com"
+    },
+    {
+        "id": 2,
+        "name": "Juan pinos",
+        "email": "juanpinos@gmail.com"
     }
-}
+]

@@ -1,6 +1,6 @@
 ﻿<?php
 
-require_once "Student.php";
+require_once __DIR__ . "/Student.php";
 
 $studentModel = new Student();
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "<br>Email: " . $student['email'];
 
     echo "<br><br>";
-    echo "<a href='read-students.php'>Ver estudiantes</a>";
+    echo "<a href='create-student.php'>Volver a crear estudiante</a>";
 
     exit;
 }
