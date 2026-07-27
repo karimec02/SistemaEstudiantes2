@@ -1,7 +1,12 @@
 [
     {
         "id": 1,
+        "name": "Karime Cedano",
+        "email": "karimecedano02@gmail.com"
+    },
+    {
+        "id": 2,
         "name": "Juan pinos",
-        "email": "juan@email.com"
+        "email": "juanpinos@gmail.com"
     }
 ]
