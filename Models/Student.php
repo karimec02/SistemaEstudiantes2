@@ -1,0 +1,57 @@
+﻿<?php
+
+class Student {
+
+    private $file = __DIR__ . '/../data/students.json';
+
+
+    // Obtener todos los estudiantes
+    public function getAll() {
+
+        if (!file_exists($this->file)) {
+            return [];
+        }
+
+        $data = file_get_contents($this->file);
+
+        if (empty($data)) {
+            return [];
+        }
+
+        $students = json_decode($data, true);
+
+        return is_array($students) ? $students : [];
+    }
+
+
+    // Eliminar estudiante
+    public function delete($id) {
+
+        $students = $this->getAll();
+
+        $found = false;
+
+        $students = array_filter($students, function($student) use ($id, &$found) {
+
+            if ($student['id'] == $id) {
+                $found = true;
+                return false;
+            }
+
+            return true;
+        });
+
+
+        if ($found) {
+
+            file_put_contents(
+                $this->file,
+                json_encode(array_values($students), JSON_PRETTY_PRINT)
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+}
