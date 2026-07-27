@@ -24,6 +24,69 @@ class Student {
     }
 
 
+    // Crear estudiante
+    public function create($name, $email) {
+
+        $students = $this->getAll();
+
+        $newStudent = [
+            "id" => count($students) + 1,
+            "name" => $name,
+            "email" => $email
+        ];
+
+        $students[] = $newStudent;
+
+        file_put_contents(
+            $this->file,
+            json_encode($students, JSON_PRETTY_PRINT)
+        );
+
+        return $newStudent;
+    }
+
+
+    // Buscar estudiante por ID
+    public function getById($id) {
+
+        $students = $this->getAll();
+
+        foreach ($students as $student) {
+
+            if ($student['id'] == $id) {
+                return $student;
+            }
+        }
+
+        return null;
+    }
+
+
+    // Actualizar estudiante
+    public function update($id, $name, $email) {
+
+        $students = $this->getAll();
+
+        foreach ($students as &$student) {
+
+            if ($student['id'] == $id) {
+
+                $student['name'] = $name;
+                $student['email'] = $email;
+
+                file_put_contents(
+                    $this->file,
+                    json_encode($students, JSON_PRETTY_PRINT)
+                );
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     // Eliminar estudiante
     public function delete($id) {
 
