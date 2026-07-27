@@ -18,23 +18,20 @@ $students = [
     ]
 ];
 
+
+// Validar si existen estudiantes
+if (empty($students)) {
+    echo "No hay estudiantes registrados.";
+    exit;
+}
+
+
+// Mostrar estudiantes
+foreach ($students as $student) {
+    echo "ID: " . $student["id"] . "<br>";
+    echo "Nombre: " . $student["name"] . "<br>";
+    echo "Email: " . $student["email"] . "<br>";
+    echo "-------------------<br>";
+}
+
 ?>
-
-<h2>Lista de Estudiantes</h2>
-
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-    </tr>
-
-    <?php foreach ($students as $student): ?>
-        <tr>
-            <td><?php echo $student['id']; ?></td>
-            <td><?php echo $student['name']; ?></td>
-            <td><?php echo $student['email']; ?></td>
-        </tr>
-    <?php endforeach; ?>
-
-</table>
