@@ -1,0 +1,6 @@
+﻿namespace SistemaEstudiantes2.data
+{
+    public class students
+    {
+    }
+}
